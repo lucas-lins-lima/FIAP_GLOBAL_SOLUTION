@@ -1,0 +1,6 @@
+id,nome,latitude,longitude,estoque_agua,estoque_alimentos,estoque_medicamentos,capacidade_veiculos
+1,Centro 1,-23.523662,-46.741931,3406,2138,1952,5
+2,Centro 2,-23.638694,-46.754893,3859,1484,1111,10
+3,Centro 3,-23.616009,-46.794425,2707,2307,1263,5
+4,Centro 4,-23.50476,-46.6731,2396,2496,1183,3
+5,Centro 5,-23.542928,-46.648247,1845,1413,1971,4
