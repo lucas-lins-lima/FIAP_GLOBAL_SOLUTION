@@ -3,6 +3,7 @@ import pandas as pd
 import numpy as np
 from collections import defaultdict
 import os
+import pickle  # Adicione esta importação
 
 class ResourceAllocator:
     def __init__(self, input_dir='src/data/', output_dir='src/data/'):
@@ -24,8 +25,10 @@ class ResourceAllocator:
         """
         print("Iniciando alocação otimizada de recursos...")
         
-        # Carregando dados necessários
-        self.G = nx.read_gpickle(f"{self.input_dir}rede_logistica.gpickle")
+        # Carregando dados necessários usando pickle
+        with open(f"{self.input_dir}rede_logistica.pkl", 'rb') as f:
+            self.G = pickle.load(f)
+            
         areas_df = pd.read_csv(f'{self.input_dir}areas_afetadas_classificadas.csv')
         centros_df = pd.read_csv(f'{self.input_dir}centros_distribuicao.csv')
         

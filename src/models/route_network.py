@@ -1,7 +1,10 @@
 import networkx as nx
+# Remova ou comente esta linha:
+# from networkx.readwrite import write_gpickle, read_gpickle
 import pandas as pd
 import matplotlib.pyplot as plt
 import os
+import pickle  # Adicione esta importação
 
 class RouteNetwork:
     def __init__(self, input_dir='src/data/', output_dir='src/data/'):
@@ -70,8 +73,9 @@ class RouteNetwork:
                           weight=distancia*2,  # Tempo estimado
                           status='livre')
         
-        # Salvando o grafo para uso posterior
-        nx.write_gpickle(G, f"{self.output_dir}rede_logistica.gpickle")
+        # Salvando o grafo para uso posterior usando pickle
+        with open(f"{self.output_dir}rede_logistica.pkl", 'wb') as f:
+            pickle.dump(G, f)
         
         self.G = G
         print(f"Rede de rotas criada com {len(G.nodes())} nós e {len(G.edges())} conexões")
@@ -87,7 +91,9 @@ class RouteNetwork:
             str: Caminho do arquivo de visualização gerado.
         """
         if self.G is None:
-            self.G = nx.read_gpickle(f"{self.output_dir}rede_logistica.gpickle")
+            # Carregar o grafo usando pickle
+            with open(f"{self.input_dir}rede_logistica.pkl", 'rb') as f:
+                self.G = pickle.load(f)
             
         # Visualização do grafo
         pos = nx.get_node_attributes(self.G, 'pos')
