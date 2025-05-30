@@ -120,6 +120,7 @@ sistema-logistica-humanitaria/
 │   │
 │   ├── esp32/                     # Código para ESP32
 │   │   └── road_sensor.ino        # Código Arduino para ESP32
+│   │   └── diagram.json           # Código para configurar os componentes para o ESP32
 │   │
 │   └── main.py                    # Script principal
 │
