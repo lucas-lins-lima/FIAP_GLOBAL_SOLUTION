@@ -3,6 +3,7 @@ import time
 import pandas as pd
 import networkx as nx
 import os
+import pickle  # Adicione esta importação
 
 class SensorIntegration:
     def __init__(self, input_dir='src/data/', output_dir='src/data/'):
@@ -98,9 +99,10 @@ class SensorIntegration:
         Returns:
             networkx.Graph: Grafo atualizado.
         """
-        # Carregar o grafo atual
+        # Carregar o grafo atual usando pickle
         if self.G is None:
-            self.G = nx.read_gpickle(f"{self.input_dir}rede_logistica.gpickle")
+            with open(f"{self.input_dir}rede_logistica.pkl", 'rb') as f:
+                self.G = pickle.load(f)
         
         # Identificar a aresta correspondente à rota
         origem = f"A{dados_sensor['origem']}"
@@ -131,8 +133,9 @@ class SensorIntegration:
         else:
             print(f"Aresta {origem}-{destino} não encontrada no grafo")
         
-        # Salvar o grafo atualizado
-        nx.write_gpickle(self.G, f"{self.output_dir}rede_logistica.gpickle")
+        # Salvar o grafo atualizado usando pickle
+        with open(f"{self.output_dir}rede_logistica.pkl", 'wb') as f:
+            pickle.dump(self.G, f)
         
         # Atualizar também o CSV de rotas
         self.atualizar_csv_rotas(dados_sensor)
