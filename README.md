@@ -94,7 +94,6 @@ sistema-logistica-humanitaria/
 ├── config/                        # Arquivos de configuração
 │
 ├── document/                      # Documentação do projeto
-│   ├── diagrams/                  # Diagramas do sistema
 │   └── other/                     # Documentação complementar
 │
 ├── scripts/                       # Scripts auxiliares
