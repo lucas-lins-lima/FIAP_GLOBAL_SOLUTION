@@ -1,4 +1,4 @@
-// Código simplificado para ESP32 no Wokwi - sensor de status de estradas
+// Código para ESP32 no Wokwi - sensor de status de estradas
 #include <WiFi.h>
 
 // Pinos dos sensores
@@ -21,6 +21,15 @@ void setup() {
   pinMode(ledAmarelo, OUTPUT);
   pinMode(ledVerde, OUTPUT);
   
+  // Teste inicial de LEDs - acende todos por 1 segundo
+  digitalWrite(ledVermelho, HIGH);
+  digitalWrite(ledAmarelo, HIGH);
+  digitalWrite(ledVerde, HIGH);
+  delay(1000);
+  digitalWrite(ledVermelho, LOW);
+  digitalWrite(ledAmarelo, LOW);
+  digitalWrite(ledVerde, LOW);
+  
   Serial.println("Sistema de monitoramento de rotas iniciado!");
 }
 
@@ -32,20 +41,20 @@ void loop() {
   // Determinação do status da rota
   String status;
   
+  // Desliga todos os LEDs primeiro
+  digitalWrite(ledVermelho, LOW);
+  digitalWrite(ledAmarelo, LOW);
+  digitalWrite(ledVerde, LOW);
+  
+  // Acende o LED apropriado
   if (bloqueioValor > 3000 || nivelAgua > 3500) {
     status = "bloqueada";
     digitalWrite(ledVermelho, HIGH);
-    digitalWrite(ledAmarelo, LOW);
-    digitalWrite(ledVerde, LOW);
   } else if (bloqueioValor > 2000 || nivelAgua > 2000) {
     status = "parcial";
-    digitalWrite(ledVermelho, LOW);
     digitalWrite(ledAmarelo, HIGH);
-    digitalWrite(ledVerde, LOW);
   } else {
     status = "livre";
-    digitalWrite(ledVermelho, LOW);
-    digitalWrite(ledAmarelo, LOW);
     digitalWrite(ledVerde, HIGH);
   }
   
