@@ -6,7 +6,7 @@
 
 <br>
 
-# Sistema de Apoio à Tomada de Decisão e Gestão de Logística para Ajuda Humanitária Pós-Desastre
+**Sistema de Apoio à Tomada de Decisão e Gestão de Logística para Ajuda Humanitária Pós-Desastre**
 
 ## 👨‍🎓 Integrantes: 
 - <a href="https://www.linkedin.com/in/anacornachi/">Ana Cornachi</a>
